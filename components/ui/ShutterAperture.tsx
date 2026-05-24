@@ -5,9 +5,12 @@ import { cn } from "@/lib/utils";
 
 /** Hexagon iris vertices (r=55) and their outer spoke tips (r=90), center 100,100. */
 const ANGLES = [0, 60, 120, 180, 240, 300];
+// Round to 2dp so SSR and client emit identical coordinate strings — Math.sin/cos
+// can differ in the last ULP between Node and the browser, causing a hydration mismatch.
+const round = (n: number) => Math.round(n * 100) / 100;
 const pt = (deg: number, r: number) => {
   const a = (deg * Math.PI) / 180;
-  return [100 + r * Math.cos(a), 100 + r * Math.sin(a)] as const;
+  return [round(100 + r * Math.cos(a)), round(100 + r * Math.sin(a))] as const;
 };
 const HEX = ANGLES.map((d) => pt(d, 55));
 const HEX_POINTS = HEX.map((p) => p.join(",")).join(" ");

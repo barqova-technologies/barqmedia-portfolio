@@ -16,7 +16,8 @@ export const BRAND = {
 /** Canonical site + SEO config. Used by metadata, sitemap, robots, JSON-LD. */
 export const SITE = {
   url: "https://barqmedia.in",
-  ogImage: "/barq-logo-light.png",
+  ogImage: "/og.png",
+  icon: "/icon.png",
   locale: "en_US",
   craftedBy: { name: "Barqova", href: "https://barqova.com" },
   // Both brands surfaced so searches for "BARQ Media" and "Barqova" resolve here.

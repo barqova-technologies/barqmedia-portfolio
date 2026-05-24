@@ -58,9 +58,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: SITE.ogImage,
-        width: 1536,
-        height: 1024,
-        alt: `${BRAND.name} logo`,
+        width: 1200,
+        height: 630,
+        alt: `${BRAND.name} — ${BRAND.tagline}`,
       },
     ],
   },
@@ -70,10 +70,8 @@ export const metadata: Metadata = {
     description: BRAND.subTagline,
     images: [SITE.ogImage],
   },
-  icons: {
-    icon: SITE.ogImage,
-    apple: SITE.ogImage,
-  },
+  // Favicon / app icons are provided by the app/ file convention
+  // (app/icon.png, app/apple-icon.png, app/favicon.ico) — auto-linked by Next.
 };
 
 export const viewport: Viewport = {
@@ -93,7 +91,7 @@ const jsonLd = {
       email: BRAND.email,
       slogan: BRAND.tagline,
       description: BRAND.subTagline,
-      logo: `${SITE.url}${SITE.ogImage}`,
+      logo: `${SITE.url}${SITE.icon}`,
       foundingDate: "2025",
       areaServed: "Worldwide",
       sameAs: [

@@ -21,15 +21,25 @@ const body = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const TITLE = `${BRAND.name} — ${BRAND.tagline}`;
+const TITLE = SITE.title;
+
+// Resolve the live host so the OG image URL is always reachable:
+// explicit env -> Vercel prod domain -> Vercel deploy URL -> canonical fallback.
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : SITE.url);
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE.url),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
     template: `%s · ${BRAND.name}`,
   },
-  description: BRAND.subTagline,
+  description: SITE.description,
   applicationName: BRAND.name,
   keywords: [...SITE.keywords],
   authors: [{ name: SITE.craftedBy.name, url: SITE.craftedBy.href }],
@@ -52,8 +62,8 @@ export const metadata: Metadata = {
     type: "website",
     siteName: BRAND.name,
     title: TITLE,
-    description: BRAND.subTagline,
-    url: SITE.url,
+    description: SITE.description,
+    url: "/",
     locale: SITE.locale,
     images: [
       {
@@ -67,7 +77,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: TITLE,
-    description: BRAND.subTagline,
+    description: SITE.description,
     images: [SITE.ogImage],
   },
   // Favicon / app icons are provided by the app/ file convention

@@ -15,10 +15,15 @@ export const BRAND = {
 
 /** Canonical site + SEO config. Used by metadata, sitemap, robots, JSON-LD. */
 export const SITE = {
-  url: "https://barqmedia.in",
+  // Live domain. Override per-deploy via NEXT_PUBLIC_SITE_URL (see app/layout.tsx).
+  url: "https://barqmedia.vercel.app",
   ogImage: "/og.png",
   icon: "/icon.png",
   locale: "en_US",
+  // SEO title (50–60 chars) + description (110–160 chars).
+  title: "BARQ Media — Built For Attention | Social Media Studio",
+  description:
+    "BARQ Media is a creative studio building content systems, cinematic reels, and brand strategy for Instagram, YouTube Shorts, LinkedIn and Meta Ads.",
   craftedBy: { name: "Barqova", href: "https://barqova.com" },
   // Both brands surfaced so searches for "BARQ Media" and "Barqova" resolve here.
   keywords: [

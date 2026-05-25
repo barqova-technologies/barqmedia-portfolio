@@ -14,6 +14,8 @@ interface AnimatedTextProps {
   strikeWords?: string[];
   delay?: number;
   stagger?: number;
+  /** Animate on mount instead of on scroll-into-view (use for above-the-fold headlines). */
+  immediate?: boolean;
 }
 
 const normalize = (w: string) => w.replace(/[^a-zA-Z]/g, "").toLowerCase();
@@ -29,6 +31,7 @@ export function AnimatedText({
   strikeWords = [],
   delay = 0,
   stagger = 0.05,
+  immediate = false,
 }: AnimatedTextProps) {
   const reduce = useReducedMotion();
   const lines = text.split("\n");
@@ -67,8 +70,12 @@ export function AnimatedText({
                     <motion.span
                       className="inline-block"
                       initial={{ y: 60, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true, margin: "-80px" }}
+                      {...(immediate
+                        ? { animate: { y: 0, opacity: 1 } }
+                        : {
+                            whileInView: { y: 0, opacity: 1 },
+                            viewport: { once: true, margin: "-80px" },
+                          })}
                       transition={{
                         duration: 0.6,
                         ease: [0.25, 0.1, 0.25, 1],

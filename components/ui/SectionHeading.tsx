@@ -43,7 +43,7 @@ export function SectionHeading({
       )}
     >
       <span className="font-body text-label uppercase text-accent">
-        [ {index} — {kicker} ]
+        [ {index} · {kicker} ]
       </span>
       <h2 className="font-display text-h2 text-text-primary text-balance">
         {heading}

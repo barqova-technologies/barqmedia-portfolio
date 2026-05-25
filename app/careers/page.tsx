@@ -1,29 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { Booking } from "@/components/sections/Booking";
+import { Careers } from "@/components/sections/Careers";
 import { Footer } from "@/components/sections/Footer";
 import { BRAND } from "@/lib/data/site";
 
 export const metadata: Metadata = {
-  title: "Book a Call",
+  title: "Careers",
   description:
-    "Book a free 15-minute strategy call with Barq Media (Barqova). No lock-in, response within 24 hours.",
-  alternates: { canonical: "/book" },
+    "Join Barq Media. We're hiring Social Media Marketing Interns. Real client work, direct mentorship, remote-first.",
+  alternates: { canonical: "/careers" },
   openGraph: {
-    title: `Book a Call · ${BRAND.name}`,
-    description: "Book a free 15-minute strategy call with Barq Media.",
-    url: "/book",
+    title: `Careers · ${BRAND.name}`,
+    description:
+      "Join Barq Media. Real client work, direct mentorship, remote-first.",
+    url: "/careers",
     type: "website",
   },
 };
 
-export default function BookPage() {
+export default function CareersPage() {
   return (
     <>
       {/* pt clears the fixed navbar */}
       <div className="min-h-screen pt-20">
-        <div className="mx-auto max-w-7xl px-5 pt-8 md:px-8">
+        <div className="mx-auto max-w-5xl px-5 pt-8 md:px-8">
           <Link
             href="/"
             className="inline-flex items-center gap-2 font-body text-[14px] text-text-secondary transition-colors duration-200 hover:text-accent"
@@ -32,7 +33,7 @@ export default function BookPage() {
             Back to site
           </Link>
         </div>
-        <Booking />
+        <Careers />
       </div>
       <Footer />
     </>

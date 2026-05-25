@@ -55,7 +55,7 @@ export function NicheTargets() {
             </span>
             <span aria-hidden className="hidden md:block" />
             <span className="mb-4 font-body text-label uppercase text-accent">
-              What BARQ delivers
+              What Barq delivers
             </span>
 
             {COMPARISON.map((row) => (

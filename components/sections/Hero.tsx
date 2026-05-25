@@ -9,7 +9,7 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { ArrowDown, Play, Heart, MessageCircle } from "lucide-react";
+import { ArrowDown, Play, Heart, MessageCircle, Zap } from "lucide-react";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ShutterAperture } from "@/components/ui/ShutterAperture";
@@ -20,9 +20,9 @@ import { EASE_SMOOTH, cn } from "@/lib/utils";
 const HERO_PLATFORMS = PLATFORMS.slice(0, 3); // Instagram · YouTube Shorts · LinkedIn
 
 /**
- * Cinematic opening frame for a social studio. Locked NOIR (pure black + yellow)
- * on every theme — matches the logo. Mouse-parallax depth layers, a rotating
- * camera-shutter aperture (BARQ identity), and floating honest social-UI chips.
+ * Cinematic opening frame for a social studio. Follows the active theme (accent,
+ * background, glows all read from theme tokens). Mouse-parallax depth layers, a
+ * rotating camera-shutter aperture (BARQ identity), and floating social-UI chips.
  */
 export function Hero() {
   const reduce = useReducedMotion();
@@ -55,7 +55,6 @@ export function Hero() {
   return (
     <section
       id="top"
-      data-theme="noir"
       aria-label="Hero"
       className="relative flex min-h-[100svh] items-center justify-center bg-bg-primary px-5 pb-32 pt-32 md:pb-36"
     >
@@ -87,15 +86,32 @@ export function Hero() {
           <ShutterAperture className="h-[78vh] w-[78vh] opacity-[0.22]" />
         </Parallax>
         <Parallax sx={sx} sy={sy} depth={-16} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <motion.svg
-            viewBox="0 0 100 200"
-            className="h-[60vh] blur-[36px]"
-            fill="var(--accent)"
-            animate={reduce ? { opacity: 0.5 } : { opacity: [0.35, 0.55, 0.35], y: [-10, 10, -10] }}
+          <motion.div
+            className="relative"
+            animate={reduce ? { opacity: 0.85 } : { y: [-10, 10, -10] }}
             transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
           >
-            <path d="M58 0 L20 110 L46 110 L34 200 L82 80 L54 80 Z" />
-          </motion.svg>
+            {/* Big soft glow — the "shadow" cast by the bolt. */}
+            <motion.svg
+              viewBox="0 0 100 200"
+              className="absolute left-1/2 top-1/2 h-[80vh] -translate-x-1/2 -translate-y-1/2 blur-[64px]"
+              fill="var(--accent)"
+              animate={reduce ? { opacity: 0.55 } : { opacity: [0.4, 0.65, 0.4] }}
+              transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
+            >
+              <path d="M58 0 L20 110 L46 110 L34 200 L82 80 L54 80 Z" />
+            </motion.svg>
+            {/* Crisp bolt on top so the lightning shape stays readable. */}
+            <motion.svg
+              viewBox="0 0 100 200"
+              className="relative h-[72vh] blur-[2px] drop-shadow-[0_0_40px_var(--accent-glow)]"
+              fill="var(--accent)"
+              animate={reduce ? { opacity: 0.35 } : { opacity: [0.28, 0.42, 0.28] }}
+              transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
+            >
+              <path d="M58 0 L20 110 L46 110 L34 200 L82 80 L54 80 Z" />
+            </motion.svg>
+          </motion.div>
         </Parallax>
 
         {/* Floating social-UI chips (desktop only; honest — no fake metrics) */}
@@ -112,18 +128,18 @@ export function Hero() {
           {...fade(0)}
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-border-accent bg-accent-dim px-4 py-2 font-body text-label uppercase text-text-primary"
         >
-          <span aria-hidden>⚡</span> A different kind of creative studio
+          <Zap size={14} className="text-accent" fill="currentColor" aria-hidden /> A different kind of creative studio
         </motion.span>
 
-        <h1 className="font-display text-hero text-text-primary [&_.text-accent]:[text-shadow:0_0_45px_var(--accent-glow)]">
-          <AnimatedText text={"Built For\nAttention."} accentWords={["Attention"]} delay={0.15} />
+        <h1 className="font-display text-hero text-text-primary [&_.text-accent]:[text-shadow:0_0_80px_var(--accent-glow),0_0_32px_var(--accent-glow)]">
+          <AnimatedText text={"Built For\nAttention."} accentWords={["Attention"]} delay={0.15} immediate />
         </h1>
 
         <motion.p
           {...fade(0.4)}
           className="mt-8 max-w-2xl font-body text-[18px] leading-relaxed text-text-secondary md:text-[20px]"
         >
-          Content systems, cinematic reels, and brand strategy
+          Brand storytelling, cinematic reels, and brand strategy
           <br className="hidden sm:block" /> for businesses that demand to be seen.
         </motion.p>
 

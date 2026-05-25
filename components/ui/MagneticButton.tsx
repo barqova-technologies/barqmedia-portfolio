@@ -1,8 +1,14 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useReducedMotion, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
+
+const MotionLink = motion.create(Link);
+
+/** Internal app routes use the Next router; hashes, mailto, tel, and external URLs stay plain anchors. */
+const isInternal = (href: string) => href.startsWith("/") && !href.startsWith("//");
 
 type Variant = "filled" | "ghost";
 type Size = "md" | "lg";
@@ -77,17 +83,21 @@ export function MagneticButton({
   const content = <span className="relative z-10">{children}</span>;
 
   if (href) {
-    return (
-      <motion.a
-        ref={ref}
-        href={href}
-        onClick={onClick}
-        onMouseMove={handleMove}
-        onMouseLeave={reset}
-        style={{ x, y }}
-        className={classes}
-        aria-label={ariaLabel}
-      >
+    const shared = {
+      ref,
+      onClick,
+      onMouseMove: handleMove,
+      onMouseLeave: reset,
+      style: { x, y },
+      className: classes,
+      "aria-label": ariaLabel,
+    };
+    return isInternal(href) ? (
+      <MotionLink href={href} {...shared}>
+        {content}
+      </MotionLink>
+    ) : (
+      <motion.a href={href} {...shared}>
         {content}
       </motion.a>
     );

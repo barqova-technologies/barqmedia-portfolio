@@ -38,7 +38,7 @@ export const CAPABILITIES: Capability[] = [
     id: "identity",
     label: "Brand Identity",
     title: "Brand Identity",
-    copy: "Visual systems built for screens — not adapted from print.",
+    copy: "Visual systems built for screens, not adapted from print.",
     visual: "blocks",
     tags: ["Screen-first", "Systems", "Type"],
     span: "md:col-span-1 md:row-span-1",

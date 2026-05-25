@@ -24,11 +24,15 @@ export function ThemeSwitcher() {
               onClick={() => setTheme(t.id)}
               className={cn(
                 "relative h-6 w-6 rounded-full border transition-transform duration-300",
-                "hover:scale-110",
-                active ? "border-accent" : "border-border"
+                "hover:scale-110"
               )}
               style={{
                 backgroundColor: t.swatch,
+                // Always-visible ring so dark swatches (e.g. Noir) stay readable
+                // on dark themes like Ember; adapts to the active theme's contrast.
+                borderColor: active
+                  ? "var(--accent)"
+                  : "color-mix(in srgb, var(--text-primary) 40%, transparent)",
                 boxShadow: active ? "0 0 12px var(--accent-glow)" : "none",
               }}
             >

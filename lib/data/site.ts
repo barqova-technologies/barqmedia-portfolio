@@ -1,8 +1,8 @@
 /** Brand identity, navigation, platforms, ticker, calendar, footer — all copy. */
 
 export const BRAND = {
-  name: "BARQ Media",
-  shortName: "BARQ",
+  name: "Barq Media",
+  shortName: "Barq",
   tagline: "Built For Attention.",
   subTagline:
     "Content systems, cinematic reels, and brand strategy for businesses that refuse to be ignored.",
@@ -11,25 +11,28 @@ export const BRAND = {
   hours: "Available Mon–Sat, 10am–7pm IST",
   established: "Est. 2025",
   availability: "Currently accepting new clients for Q3 2026",
+  phoneDisplay: "+91 70078 98870",
+  whatsapp:
+    "https://wa.me/917007898870?text=Hi%20Barq%20Media%2C%20I%27d%20like%20to%20talk%20about%20a%20project.",
 } as const;
 
 /** Canonical site + SEO config. Used by metadata, sitemap, robots, JSON-LD. */
 export const SITE = {
   // Live domain. Override per-deploy via NEXT_PUBLIC_SITE_URL (see app/layout.tsx).
-  url: "https://barqmedia.vercel.app",
+  url: "https://barqmedia.in",
   ogImage: "/og.png",
   icon: "/icon.png",
   locale: "en_US",
   // SEO title (50–60 chars) + description (110–160 chars).
-  title: "BARQ Media — Built For Attention | Social Media Studio",
+  title: "Barq Media · Built For Attention | Social Media Studio",
   description:
-    "BARQ Media is a creative studio building content systems, cinematic reels, and brand strategy for Instagram, YouTube Shorts, LinkedIn and Meta Ads.",
-  craftedBy: { name: "Barqova", href: "https://barqova.com" },
-  // Both brands surfaced so searches for "BARQ Media" and "Barqova" resolve here.
+    "Barq Media is a creative studio building content systems, cinematic reels, and brand strategy for Instagram, YouTube Shorts, LinkedIn and Meta Ads.",
+  craftedBy: { name: "Barqova Technologies", href: "https://barqova.com" },
+  // Both brands surfaced so searches for "Barq Media" and "Barqova" resolve here.
   keywords: [
-    "BARQ Media",
+    "Barq Media",
     "Barqova",
-    "BARQ Media studio",
+    "Barq Media studio",
     "social media marketing studio",
     "cinematic reels",
     "content systems",
@@ -52,7 +55,7 @@ export const SITE = {
 /** Platform focus — NO TikTok anywhere. `icon` keys map to lucide-react / custom SVGs. */
 export const PLATFORMS = [
   { name: "Instagram", icon: "Instagram" },
-  { name: "YouTube Shorts", icon: "Youtube" },
+  { name: "YouTube", icon: "Youtube" },
   { name: "LinkedIn", icon: "Linkedin" },
   { name: "Meta Ads", icon: "Facebook" },
 ] as const;
@@ -63,6 +66,8 @@ export const NAV_LINKS = [
   { label: "What We Do", href: "/#capabilities" },
   { label: "How We Work", href: "/#process" },
   { label: "Our Thinking", href: "/#manifesto" },
+  { label: "Careers", href: "/careers" },
+  { label: "Ecosystem", href: "/ecosystem" },
   { label: "Book a Call", href: "/book" },
 ] as const;
 
@@ -111,11 +116,12 @@ export const CALENDAR_LEGEND: { type: ContentType; tint: string }[] = [
 export const FOOTER = {
   blurb:
     "Content systems and cinematic social media for businesses that demand to be seen.",
-  copyright: "© 2026 BARQ Media.",
+  copyright: "© 2026 Barq Media.",
   socials: [
     { name: "Instagram", href: "#", icon: "Instagram" },
-    { name: "YouTube", href: "#", icon: "Youtube" },
+    { name: "Facebook", href: "#", icon: "Facebook" },
     { name: "LinkedIn", href: "#", icon: "Linkedin" },
+    { name: "YouTube", href: "#", icon: "Youtube" },
   ],
   columns: {
     studio: {
@@ -125,18 +131,88 @@ export const FOOTER = {
         { label: "How We Work", href: "/#process" },
         { label: "Services", href: "/#services" },
         { label: "About", href: "/#about" },
+        { label: "Careers", href: "/careers" },
+        { label: "Ecosystem", href: "/ecosystem" },
       ],
     },
     platforms: {
       title: "Platforms",
       links: [
         { label: "Instagram", href: "#" },
-        { label: "YouTube Shorts", href: "#" },
+        { label: "Facebook", href: "#" },
         { label: "LinkedIn", href: "#" },
-        { label: "Meta Ads", href: "#" },
+        { label: "YouTube", href: "#" },
       ],
     },
   },
   contactNote: "Currently open to new clients",
   signature: "Made with obsession.",
+} as const;
+
+/** Careers — open roles surfaced on /careers. */
+export const CAREERS = {
+  intro:
+    "We're a young studio with something to prove. If you think in hooks, obsess over the first 3 seconds, and want to build a portfolio that actually moves numbers, we want to hear from you.",
+  perks: [
+    "Real client work from week one, no busywork",
+    "Direct mentorship from the founding team",
+    "Remote-first, India hours, flexible",
+    "Certificate + letter of recommendation on completion",
+  ],
+  openings: [
+    {
+      title: "Social Media Marketing Intern",
+      type: "Internship · Remote",
+      openings: 2,
+      blurb:
+        "Plan, script, and ship short-form content (Reels, Shorts, carousels) across Instagram, YouTube and LinkedIn. Track what performs and iterate fast.",
+      responsibilities: [
+        "Draft hooks, captions, and short-form scripts",
+        "Schedule and publish across platforms",
+        "Track retention, saves, and reach; report what works",
+        "Research trends, sounds, and competitor angles",
+      ],
+    },
+  ],
+} as const;
+
+/**
+ * Ecosystem — the family of brands Barq Media belongs to.
+ * NOTE: brand blurbs below are placeholders — adjust to the real positioning.
+ */
+export const ECOSYSTEM = {
+  parent: "Infinity Ventures",
+  intro:
+    "Barq Media is a unit of Infinity Ventures, a small ecosystem of independent brands that share craft, standards, and people.",
+  brands: [
+    {
+      name: "Barqova",
+      domain: "barqova.com",
+      url: "https://barqova.com",
+      blurb: "The creative studio and engineering craft behind the ecosystem.",
+      current: false,
+    },
+    {
+      name: "Barq Media",
+      domain: "barqmedia.in",
+      url: "https://barqmedia.in",
+      blurb: "Content systems, cinematic reels, and brand strategy.",
+      current: true,
+    },
+    {
+      name: "Matrix Event",
+      domain: "matrixevent.in",
+      url: "https://matrixevent.in",
+      blurb: "Events, experiences, and on-ground production.",
+      current: false,
+    },
+    {
+      name: "Inkqova",
+      domain: "inkqova.in",
+      url: "https://inkqova.in",
+      blurb: "Writing, editorial, and brand storytelling in print.",
+      current: false,
+    },
+  ],
+  note: "Barqova Technologies is registered separately but operates within the same ecosystem.",
 } as const;

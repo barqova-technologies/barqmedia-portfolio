@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider, themeInitScript } from "@/components/ThemeProvider";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { NavBar } from "@/components/ui/NavBar";
+import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { BRAND, SITE } from "@/lib/data/site";
 
 // Display: chunky geometric poster headline. Body: clean + warm.
@@ -70,7 +71,7 @@ export const metadata: Metadata = {
         url: SITE.ogImage,
         width: 1200,
         height: 630,
-        alt: `${BRAND.name} — ${BRAND.tagline}`,
+        alt: `${BRAND.name} · ${BRAND.tagline}`,
       },
     ],
   },
@@ -88,7 +89,7 @@ export const viewport: Viewport = {
   themeColor: "#000000",
 };
 
-/** Organization + WebSite structured data — links BARQ Media ⇄ Barqova for search. */
+/** Organization + WebSite structured data — links Barq Media ⇄ Barqova for search. */
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -96,7 +97,7 @@ const jsonLd = {
       "@type": "Organization",
       "@id": `${SITE.url}/#organization`,
       name: BRAND.name,
-      alternateName: ["Barqova", "BARQ", "BARQ Media Studio"],
+      alternateName: ["Barqova", "Barq", "Barq Media Studio"],
       url: SITE.url,
       email: BRAND.email,
       slogan: BRAND.tagline,
@@ -154,6 +155,7 @@ export default function RootLayout({
           <SmoothScroll>
             <NavBar />
             <main>{children}</main>
+            <WhatsAppFloat />
           </SmoothScroll>
         </ThemeProvider>
       </body>

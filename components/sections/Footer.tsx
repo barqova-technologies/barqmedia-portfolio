@@ -1,8 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Icon } from "@/components/ui/Icon";
 import { BRAND, FOOTER, SITE } from "@/lib/data/site";
+
+/** Internal app routes use the Next router; "#" placeholders and external URLs stay plain anchors. */
+const isInternal = (href: string) => href.startsWith("/") && !href.startsWith("//");
 
 /** Minimal premium footer — 4 columns desktop, stacked mobile. */
 export function Footer() {
@@ -64,7 +68,7 @@ export function Footer() {
             <p className="font-body text-[13px] text-text-secondary">
               {BRAND.hours}
             </p>
-            <a
+            <Link
               href="/book"
               className="group inline-flex items-center gap-1 font-body text-[14px] font-semibold text-accent"
             >
@@ -72,7 +76,7 @@ export function Footer() {
               <span className="transition-transform duration-200 group-hover:translate-x-1">
                 →
               </span>
-            </a>
+            </Link>
             <p className="font-body text-[13px] text-text-muted">
               {FOOTER.contactNote}
             </p>
@@ -108,16 +112,27 @@ function FooterColumn({
         {title}
       </h3>
       <ul className="flex flex-col gap-2">
-        {links.map((l) => (
-          <li key={l.label}>
-            <a
-              href={l.href}
-              className="font-body text-[14px] text-text-secondary transition-colors duration-200 hover:text-text-primary"
-            >
-              {l.label}
-            </a>
-          </li>
-        ))}
+        {links.map((l) =>
+          isInternal(l.href) ? (
+            <li key={l.label}>
+              <Link
+                href={l.href}
+                className="font-body text-[14px] text-text-secondary transition-colors duration-200 hover:text-text-primary"
+              >
+                {l.label}
+              </Link>
+            </li>
+          ) : (
+            <li key={l.label}>
+              <a
+                href={l.href}
+                className="font-body text-[14px] text-text-secondary transition-colors duration-200 hover:text-text-primary"
+              >
+                {l.label}
+              </a>
+            </li>
+          )
+        )}
       </ul>
     </div>
   );

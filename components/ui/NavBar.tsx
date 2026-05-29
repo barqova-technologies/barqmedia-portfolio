@@ -29,7 +29,8 @@ export function NavBar() {
   }, [open]);
 
   return (
-    <nav
+    <>
+      <nav
       aria-label="Primary"
       className="fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-300"
       style={{
@@ -89,8 +90,11 @@ export function NavBar() {
           </button>
         </div>
       </div>
+      </nav>
 
-      {/* Mobile fullscreen overlay */}
+      {/* Mobile fullscreen overlay — kept OUTSIDE <nav> because the nav's
+          backdrop-filter would otherwise become the containing block for this
+          fixed element, trapping it inside the 80px bar instead of the viewport. */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -143,6 +147,6 @@ export function NavBar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }

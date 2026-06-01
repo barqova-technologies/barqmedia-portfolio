@@ -208,8 +208,8 @@ export const ECOSYSTEM = {
     },
     {
       name: "Inkqova",
-      domain: "inkqova.in",
-      url: "https://inkqova.in",
+      domain: "inkqova.com",
+      url: "https://inkqova.com",
       blurb: "Writing, editorial, and brand storytelling in print.",
       current: false,
     },

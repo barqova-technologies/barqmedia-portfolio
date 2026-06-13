@@ -11,9 +11,9 @@ export const BRAND = {
   hours: "Available Mon–Sat, 10am–7pm IST",
   established: "Est. 2025",
   availability: "Currently accepting new clients for Q3 2026",
-  phoneDisplay: "+91 70078 98870",
+  phoneDisplay: "+91 8052 911 323",
   whatsapp:
-    "https://wa.me/917007898870?text=Hi%20Barq%20Media%2C%20I%27d%20like%20to%20talk%20about%20a%20project.",
+    "https://wa.me/918052911323?text=Hi%20Barq%20Media%2C%20I%27d%20like%20to%20talk%20about%20a%20project.",
 } as const;
 
 /** Canonical site + SEO config. Used by metadata, sitemap, robots, JSON-LD. */
